@@ -1,0 +1,76 @@
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mselect sqlite_version(*)[0m
+  [4;36;1mSQL (15.9ms)[0m   [0;1mCREATE TABLE "schema_migrations" ("version" varchar(255) NOT NULL) [0m
+  [4;35;1mSQL (17.2ms)[0m   [0mCREATE UNIQUE INDEX "unique_schema_migrations" ON "schema_migrations" ("version")[0m
+  [4;36;1mSQL (0.2ms)[0m   [0;1m SELECT name
+ FROM sqlite_master
+ WHERE type = 'table' AND NOT name = 'sqlite_sequence'
+[0m
+  [4;35;1mSQL (0.1ms)[0m   [0mSELECT version FROM schema_migrations[0m
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-09 16:15:12) [POST]
+  Parameters: {"session"=>{"timestamp"=>"2010-02-10T00:14:44.718Z", "from"=>{"name"=>"unknown", "network"=>"JABBER", "id"=>"zhao.lu.us@gmail.com", "channel"=>"TEXT"}, "to"=>{"name"=>"unknown", "network"=>"JABBER", "id"=>"foobuz@bot.im", "channel"=>"TEXT"}, "userType"=>"HUMAN", "id"=>"irm8w2", "initialText"=>"ad", "headers"=>[{"value"=>"70", "key"=>"Max-Forwards"}, {"value"=>"124", "key"=>"Content-Length"}, {"value"=>"<sip:10.6.93.201:5066;transport=udp>", "key"=>"Contact"}, {"value"=>"<sip:9991444206@10.6.93.202:5061;to=foobuz%40bot.im>", "key"=>"To"}, {"value"=>"1 INVITE", "key"=>"CSeq"}, {"value"=>"SIP/2.0/UDP 10.6.93.201:5066;branch=z9hG4bKi7rzob", "key"=>"Via"}, {"value"=>"irm8w2", "key"=>"Call-ID"}, {"value"=>"application/sdp", "key"=>"Content-Type"}, {"value"=>"<sip:54E65355-88D6-4BC4-8B03602313F31619@10.6.61.201;channel=private;user=zhao.lu.us%40gmail.com;msg=ad;network=Jabber;step=17>;tag=h7ozd3", "key"=>"From"}], "accountId"=>"38958"}, "tropo-engine"=>"json"}
+
+ActionController::RoutingError (No route matches "/messaging" with {:method=>:post}):
+  
+
+Rendering rescues/layout (not_found)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-09 16:16:27) [POST]
+  Parameters: {"session"=>{"timestamp"=>"2010-02-10T00:15:59.453Z", "from"=>{"name"=>"unknown", "network"=>"JABBER", "id"=>"zhao.lu.us@gmail.com", "channel"=>"TEXT"}, "to"=>{"name"=>"unknown", "network"=>"JABBER", "id"=>"foobuz@bot.im", "channel"=>"TEXT"}, "userType"=>"HUMAN", "id"=>"sw8oqa", "initialText"=>"adsf", "headers"=>[{"value"=>"70", "key"=>"Max-Forwards"}, {"value"=>"124", "key"=>"Content-Length"}, {"value"=>"<sip:10.6.93.201:5066;transport=udp>", "key"=>"Contact"}, {"value"=>"<sip:9991444206@10.6.93.202:5061;to=foobuz%40bot.im>", "key"=>"To"}, {"value"=>"1 INVITE", "key"=>"CSeq"}, {"value"=>"SIP/2.0/UDP 10.6.93.201:5066;branch=z9hG4bKdt7rv7", "key"=>"Via"}, {"value"=>"sw8oqa", "key"=>"Call-ID"}, {"value"=>"application/sdp", "key"=>"Content-Type"}, {"value"=>"<sip:54E65355-88D6-4BC4-8B03602313F31619@10.6.61.201;channel=private;user=zhao.lu.us%40gmail.com;msg=adsf;network=Jabber;step=1>;tag=x6j9qt", "key"=>"From"}], "accountId"=>"38958"}, "tropo-engine"=>"json"}
+
+NameError (uninitialized constant MessagingController):
+  
+
+Rendered rescues/_trace (26.0ms)
+Rendered rescues/_request_and_response (1.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing ApplicationController#index (for 127.0.0.1 at 2010-02-09 16:17:00) [POST]
+  Parameters: {"session"=>{"timestamp"=>"2010-02-10T00:16:33.046Z", "from"=>{"name"=>"unknown", "network"=>"JABBER", "id"=>"zhao.lu.us@gmail.com", "channel"=>"TEXT"}, "to"=>{"name"=>"unknown", "network"=>"JABBER", "id"=>"foobuz@bot.im", "channel"=>"TEXT"}, "userType"=>"HUMAN", "id"=>"r4cir5", "initialText"=>"adf", "headers"=>[{"value"=>"70", "key"=>"Max-Forwards"}, {"value"=>"124", "key"=>"Content-Length"}, {"value"=>"<sip:10.6.93.201:5066;transport=udp>", "key"=>"Contact"}, {"value"=>"<sip:9991444206@10.6.93.202:5061;to=foobuz%40bot.im>", "key"=>"To"}, {"value"=>"1 INVITE", "key"=>"CSeq"}, {"value"=>"SIP/2.0/UDP 10.6.93.201:5066;branch=z9hG4bK8kdct2", "key"=>"Via"}, {"value"=>"r4cir5", "key"=>"Call-ID"}, {"value"=>"application/sdp", "key"=>"Content-Type"}, {"value"=>"<sip:54E65355-88D6-4BC4-8B03602313F31619@10.6.61.201;channel=private;user=zhao.lu.us%40gmail.com;msg=adf;network=Jabber;step=2>;tag=ktv9zc", "key"=>"From"}], "accountId"=>"38958"}, "tropo-engine"=>"json"}
+
+SyntaxError (/Users/zlu/projects/staging/tropo/app/controllers/messagings_controller.rb:10: syntax error, unexpected tSTRING_BEG, expecting kEND
+      render :json => Tropo::Generator.say "Unsupported operation"
+                                            ^):
+  
+
+Rendered rescues/_trace (29.2ms)
+Rendered rescues/_request_and_response (1.5ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MessagingsController#index (for 127.0.0.1 at 2010-02-09 16:17:53) [POST]
+  Parameters: {"session"=>{"timestamp"=>"2010-02-10T00:17:26.265Z", "from"=>{"name"=>"unknown", "network"=>"JABBER", "id"=>"zhao.lu.us@gmail.com", "channel"=>"TEXT"}, "to"=>{"name"=>"unknown", "network"=>"JABBER", "id"=>"foobuz@bot.im", "channel"=>"TEXT"}, "userType"=>"HUMAN", "id"=>"ulu23d", "initialText"=>"asdf", "headers"=>[{"value"=>"70", "key"=>"Max-Forwards"}, {"value"=>"124", "key"=>"Content-Length"}, {"value"=>"<sip:10.6.93.201:5066;transport=udp>", "key"=>"Contact"}, {"value"=>"<sip:9991444206@10.6.93.202:5061;to=foobuz%40bot.im>", "key"=>"To"}, {"value"=>"1 INVITE", "key"=>"CSeq"}, {"value"=>"SIP/2.0/UDP 10.6.93.201:5066;branch=z9hG4bKrb3j9w", "key"=>"Via"}, {"value"=>"ulu23d", "key"=>"Call-ID"}, {"value"=>"application/sdp", "key"=>"Content-Type"}, {"value"=>"<sip:54E65355-88D6-4BC4-8B03602313F31619@10.6.61.201;channel=private;user=zhao.lu.us%40gmail.com;msg=asdf;network=Jabber;step=3>;tag=gl8gcu", "key"=>"From"}], "accountId"=>"38958"}, "tropo-engine"=>"json"}
+
+NameError (uninitialized constant MessagingsController::StatusParser):
+  app/controllers/messagings_controller.rb:8:in `index'
+
+Rendered rescues/_trace (30.8ms)
+Rendered rescues/_request_and_response (0.7ms)
+Rendering rescues/layout (internal_server_error)
+
+
+Processing MessagingsController#index (for 127.0.0.1 at 2010-02-09 16:18:30) [POST]
+  Parameters: {"session"=>{"timestamp"=>"2010-02-10T00:18:02.968Z", "from"=>{"name"=>"unknown", "network"=>"JABBER", "id"=>"zhao.lu.us@gmail.com", "channel"=>"TEXT"}, "to"=>{"name"=>"unknown", "network"=>"JABBER", "id"=>"foobuz@bot.im", "channel"=>"TEXT"}, "userType"=>"HUMAN", "id"=>"n6morw", "initialText"=>"asf", "headers"=>[{"value"=>"70", "key"=>"Max-Forwards"}, {"value"=>"124", "key"=>"Content-Length"}, {"value"=>"<sip:10.6.93.201:5066;transport=udp>", "key"=>"Contact"}, {"value"=>"<sip:9991444206@10.6.93.202:5061;to=foobuz%40bot.im>", "key"=>"To"}, {"value"=>"1 INVITE", "key"=>"CSeq"}, {"value"=>"SIP/2.0/UDP 10.6.93.201:5066;branch=z9hG4bK1txz20", "key"=>"Via"}, {"value"=>"n6morw", "key"=>"Call-ID"}, {"value"=>"application/sdp", "key"=>"Content-Type"}, {"value"=>"<sip:54E65355-88D6-4BC4-8B03602313F31619@10.6.61.201;channel=private;user=zhao.lu.us%40gmail.com;msg=asf;network=Jabber;step=4>;tag=qdukfk", "key"=>"From"}], "accountId"=>"38958"}, "tropo-engine"=>"json"}
+Completed in 2ms (View: 0, DB: 0) | 200 OK [http://web1.tunnlr.com/messaging?tropo-engine=json]
+
+
+Processing MessagingsController#index (for 127.0.0.1 at 2010-02-09 16:18:39) [POST]
+  Parameters: {"session"=>{"timestamp"=>"2010-02-10T00:18:11.625Z", "from"=>{"name"=>"unknown", "network"=>"JABBER", "id"=>"zhao.lu.us@gmail.com", "channel"=>"TEXT"}, "to"=>{"name"=>"unknown", "network"=>"JABBER", "id"=>"foobuz@bot.im", "channel"=>"TEXT"}, "userType"=>"HUMAN", "id"=>"i0f7k7", "initialText"=>"n hello there", "headers"=>[{"value"=>"70", "key"=>"Max-Forwards"}, {"value"=>"124", "key"=>"Content-Length"}, {"value"=>"<sip:10.6.93.201:5066;transport=udp>", "key"=>"Contact"}, {"value"=>"<sip:9991444206@10.6.93.202:5061;to=foobuz%40bot.im>", "key"=>"To"}, {"value"=>"1 INVITE", "key"=>"CSeq"}, {"value"=>"SIP/2.0/UDP 10.6.93.201:5066;branch=z9hG4bKd0x1k6", "key"=>"Via"}, {"value"=>"i0f7k7", "key"=>"Call-ID"}, {"value"=>"application/sdp", "key"=>"Content-Type"}, {"value"=>"<sip:54E65355-88D6-4BC4-8B03602313F31619@10.6.61.201;channel=private;user=zhao.lu.us%40gmail.com;msg=n%20hello%20there;network=Jabber;step=5>;tag=pvqh2p", "key"=>"From"}], "accountId"=>"38958"}, "tropo-engine"=>"json"}
+Completed in 2ms (View: 0, DB: 0) | 200 OK [http://web1.tunnlr.com/messaging?tropo-engine=json]
+
+
+Processing MessagingsController#index (for 127.0.0.1 at 2010-02-09 16:18:58) [POST]
+  Parameters: {"session"=>{"timestamp"=>"2010-02-10T00:18:30.937Z", "from"=>{"name"=>"unknown", "network"=>"SMS", "id"=>"14085059096", "channel"=>"TEXT"}, "to"=>{"name"=>"unknown", "network"=>"SMS", "id"=>"16175759989", "channel"=>"TEXT"}, "userType"=>"HUMAN", "id"=>"mxoq01", "initialText"=>"N he wisp", "headers"=>[{"value"=>"70", "key"=>"Max-Forwards"}, {"value"=>"124", "key"=>"Content-Length"}, {"value"=>"<sip:10.6.93.201:5066;transport=udp>", "key"=>"Contact"}, {"value"=>"<sip:9991444206@10.6.93.202:5061;to=16175759989>", "key"=>"To"}, {"value"=>"1 INVITE", "key"=>"CSeq"}, {"value"=>"SIP/2.0/UDP 10.6.93.201:5066;branch=z9hG4bKvb6izn", "key"=>"Via"}, {"value"=>"mxoq01", "key"=>"Call-ID"}, {"value"=>"application/sdp", "key"=>"Content-Type"}, {"value"=>"<sip:370930B3-D767-4F35-9A9AABB4535A61AB@10.6.61.201;channel=private;user=14085059096;msg=N%20he%20wisp;network=SMS;step=1>;tag=jzr7w6", "key"=>"From"}], "accountId"=>"38958"}, "tropo-engine"=>"json"}
+Completed in 2ms (View: 0, DB: 0) | 200 OK [http://web1.tunnlr.com/messaging?tropo-engine=json]
+
+
+Processing MessagingsController#index (for 127.0.0.1 at 2010-02-09 16:19:29) [POST]
+  Parameters: {"session"=>{"timestamp"=>"2010-02-10T00:19:01.718Z", "from"=>{"name"=>"unknown", "network"=>"SMS", "id"=>"14085059096", "channel"=>"TEXT"}, "to"=>{"name"=>"unknown", "network"=>"SMS", "id"=>"16175759989", "channel"=>"TEXT"}, "userType"=>"HUMAN", "id"=>"p8rzeh", "initialText"=>"Zzzzz", "headers"=>[{"value"=>"70", "key"=>"Max-Forwards"}, {"value"=>"124", "key"=>"Content-Length"}, {"value"=>"<sip:10.6.93.201:5066;transport=udp>", "key"=>"Contact"}, {"value"=>"<sip:9991444206@10.6.93.202:5061;to=16175759989>", "key"=>"To"}, {"value"=>"1 INVITE", "key"=>"CSeq"}, {"value"=>"SIP/2.0/UDP 10.6.93.201:5066;branch=z9hG4bK7oo7k1", "key"=>"Via"}, {"value"=>"p8rzeh", "key"=>"Call-ID"}, {"value"=>"application/sdp", "key"=>"Content-Type"}, {"value"=>"<sip:370930B3-D767-4F35-9A9AABB4535A61AB@10.6.61.201;channel=private;user=14085059096;msg=Zzzzz;network=SMS;step=2>;tag=mbx865", "key"=>"From"}], "accountId"=>"38958"}, "tropo-engine"=>"json"}
+Completed in 2ms (View: 0, DB: 0) | 200 OK [http://web1.tunnlr.com/messaging?tropo-engine=json]
