@@ -1,34 +1,12 @@
-# The api key, secret key, and canvas page name are required to get started
-# Tunnel configuration is only needed if you are going to use the facebooker:tunnel Rake tasks
-# Your callback url in Facebook should be set to http://public_host:public_port
-# If you're building a Facebook connect site,
-#    change the value of set_asset_host_to_callback_url to false
-# To develop for the new profile design, add the following key..
-# api: new
-# remove the key or set it to anything else to use the old facebook design.
-# This should only be necessary until the final version of the new profile is released.
-
 development:
-  api_key: f17fe996672136c94fb0acc014848b35
-  secret_key: e9b0ec24a7f485bd3bd4fd5d0f4a4af8
-  canvas_page_name: whodeletedmedev
-  callback_url: http://web1.tunnlr.com:10790
-  pretty_errors: true
-  set_asset_host_to_callback_url: true
   tunnel:
-    public_host_username: tunnlr1228
-    public_host: ssh1.tunnlr.com
-    public_port: 10790
-    local_port: 3000
+    public_host_username: your_tunnelr_username
+    public_host: your_tunnelr_host
+    public_port: your_tunnelr_port
+    local_port: 3000 #or whatever port your rails server is running locally
     server_alive_interval: 0
 
-
 test:
-  api_key:
-  secret_key:
-  canvas_page_name:
-  callback_url:
-  set_asset_host_to_callback_url: true
   tunnel:
     public_host_username:
     public_host:
@@ -37,11 +15,6 @@ test:
     server_alive_interval: 0
 
 production:
-  api_key: 59c6a2bdb85f907e8914296d50b8d2e9
-  secret_key: d80753adc556b09573da7b125132456e
-  canvas_page_name: outoflove
-  callback_url: http://whodeletedme.heroku.com
-  set_asset_host_to_callback_url: true
   tunnel:
     public_host_username:
     public_host:
