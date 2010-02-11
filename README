@@ -1,16 +1,26 @@
-create a rails application
+This short tutorial illustrates how to create a tropo messaging (sms/im) application, using its web APIs, with the same code base, in about 15 minutes.
+
+First you need to install tropo's ruby gem, which makes parsing so much simpler.
+sudo gem install tropo-webapi-ruby
+
+Also check out github for its documentation and examples (sinatra)
+http://github.com/voxeo/tropo-webapi-ruby
+
+Create a rails application
 (note that there is an incompatibility issue with ActiveSupport 2.3.2 and json, which is requied by tropo ruby gem.  I'm using rails 2.3.5 and it works fine.)
 
-rails tropo
-cd tropo
-script/generate controller messagings
-=======edit messagings_controller.rb================
+rails tropo-tutorial
+cd tropo-tutorial
+script/generate controller messagings # we will use this controller to essentially parse tropo request and response appropriately
+
+# somple content of messagings_controller.rb
 class MessagingsController < ApplicationController
   def index
+    #initial_text captures the very first sms or IM sent to tropo
     initial_text = params["session"]["initialText"]
     from = params["session"]["from"]
     network = from["network"]
-    from_id = from["id"]
+    from_id = from["id"] # this field contains IM login or phone number in case of incoming SMS
     if network == "SMS" || network == "JABBER"
       render :json => parse(initial_text)
     else
@@ -31,34 +41,41 @@ class MessagingsController < ApplicationController
     end
   end
 end
-=====================================================
-There are lot you can do with all the parameters tropo posts to your app:
+
+Here is an example of what Tropo posts to our messagings_controller.
 Processing MessagingsController#index (for 127.0.0.1 at 2010-02-09 16:19:29) [POST]
   Parameters: {"session"=>{"timestamp"=>"2010-02-10T00:19:01.718Z", "from"=>{"name"=>"unknown", "network"=>"SMS", "id"=>"14085059096", "channel"=>"TEXT"}, "to"=>{"name"=>"unknown", "network"=>"SMS", "id"=>"16175759989", "channel"=>"TEXT"}, "userType"=>"HUMAN", "id"=>"p8rzeh", "initialText"=>"Zzzzz", "headers"=>[{"value"=>"70", "key"=>"Max-Forwards"}, {"value"=>"124", "key"=>"Content-Length"}, {"value"=>"<sip:10.6.93.201:5066;transport=udp>", "key"=>"Contact"}, {"value"=>"<sip:9991444206@10.6.93.202:5061;to=16175759989>", "key"=>"To"}, {"value"=>"1 INVITE", "key"=>"CSeq"}, {"value"=>"SIP/2.0/UDP 10.6.93.201:5066;branch=z9hG4bK7oo7k1", "key"=>"Via"}, {"value"=>"p8rzeh", "key"=>"Call-ID"}, {"value"=>"application/sdp", "key"=>"Content-Type"}, {"value"=>"<sip:370930B3-D767-4F35-9A9AABB4535A61AB@10.6.61.201;channel=private;user=14085059096;msg=Zzzzz;network=SMS;step=2>;tag=mbx865", "key"=>"From"}], "accountId"=>"38958"}, "tropo-engine"=>"json"}
-=====================================================
 
-add a route for the messageings_controller in config/routes.rb
+Add a route for the messageings_controller in config/routes.rb
 map.connect 'messaging', :controller => 'messagings', :action => 'index'
+Note that I'm calling the route messaging, without the 's'; and I'm calling the controllers messages_controller, with the 's'.
 
-add a gem require in config/environment.rb, which means you need to gem install tropo-webapi-ruby
+Add a gem require in config/environment.rb
 require 'tropo-webapi-ruby'
 
-now it's time to create a tropo app
-activate an IM account.  I like to use @bot.im's jabber account.  For this example, I have created foobuz@bot.im.
+Now it's time to create a tropo app and activate an IM/SMS account.  
+I like to use @bot.im's jabber account.  For this example, I have created foobuz@bot.im.
 Once your tropo IM account is activated, go ahead and add it to your IM client (a jabber client in this exmaple)
-next you need to supply a url that powers voice calls.  just put in any url for now as we won't deal with voice in this blog.  it is a mandatory field on tropo.
+Next you need to supply a url that powers voice calls as it is required by Tropo.  Just put in any url for now as we won't deal with voice here, for now.
 
-then supply a url that powers sms/messaging calls.  since we deal with tropo web api (v.s. hosted script), we will need to supply a valid server url that points to a rails controller for example.
-http://your_server/messaging?tropo-engine=json
+Then supply a url that powers SMS/messaging calls.  Since we deal with Tropo web api (v.s. hosted script), we will need to supply a valid server url that points to a rails controller for example.
+http://tropo-tutorial.heroku.com/messaging?tropo-engine=json
 
-please note that "tropo-engine" is a required parameter for tropo currently.  the value for it is json in this example.
+please note that "tropo-engine" is a required parameter for Tropo.  The value for it is json in this example.
 
-now add a sms-enabled number.
+Now add a sms-enabled number.
 
-That's it, now fire up your rails server.
+That's it, now fire up your rails server.  For this example, I have created a working Heroku app for you test with.  You can add foobuz@bot.im and/or SMS to (617) 575-9989,
+If you send message: "this is a test"
+Tropo should respond "unsupported operation"
+If you send message: "n this is a test"
+Tropo should respond "you said: this is a test"
 
-send message to your IM bot (created on tropo) or SMS to the tropo number.
-e.g. "this is a test"
-tropo should respond "unsupported operation"
-e.g. "n this is a test"
-tropo should respond "you said: this is a test"
+Now for the bonus point, let's give tunnlr a swirl.
+
+tunnlr is great for developing sms/im apps locally without having to deploy your application on to a server.  You can sign up for tunnlr http://tunnlr.com.  Now you can take a look at the github source code for tunnel.yml under the config directory.  Fill in the field according to the credential tunnlr.com gives you.
+
+Start your rails server, then issue: rake tunnel:tunnel:start
+This should start a reverse ssh tunnel for you and redirect all the http traffic through the tunnel to your local machine.  If you decide to use tunnlr, you would need to change your tropo app's configuration and point the url to your tunnlr url.  It should look like http://your_tunnlr_host.com:port
+
+
