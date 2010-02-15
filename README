@@ -62,3 +62,35 @@ e.g. "this is a test"
 tropo should respond "unsupported operation"
 e.g. "n this is a test"
 tropo should respond "you said: this is a test"
+
+An example of the conference API:
+http://docs.tropo.com/webapi/2.0/frame.jsp?page=conference.htm
+
+I added a new rails controller for this:
+script/generate conferences
+
+Add this to routes.rb (I will just use index action)
+map.connect 'conference', :controller => 'conferences', :action => 'index'
+
+Now open conferences_controller and add index method:
+  def index
+    render :json => Tropo::Generator.conference(
+                    :name => "foo",
+                    :id => "1234",
+#                   :exitTone => "#",
+                    :on => [
+                                {
+                                        :event => "join",
+					:say => { :value => "Welcome to my conference" }
+                                },
+                                {
+                                        :event => "leave",
+                                        :say => { :value => "Someone has left the conference" }
+				}
+                           ])
+  end
+A few things to note for the code above:
+You really just need :id and :name (maybe not even both of them) to have a conference call.  
+The :on works for the join event where I can hear "Welcome to my conference", but sometimes I can't hear the first word "Welcome".  It maybe beause system is trying to establish SIP session.
+I haven't gotten the leave event working and couldn't hear "Someone has left the conference".
+Also the second caller joining the conference hears the word "conference" in the welcome message being echoed several times.  The conference call itself works well, pretty clear voice quality when I tested with a coworker.
