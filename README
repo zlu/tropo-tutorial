@@ -14,6 +14,8 @@ cd tropo-tutorial
 script/generate controller messagings # we will use this controller to essentially parse tropo request and response appropriately
 
 # somple content of messagings_controller.rb
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fzlu%2Ftropo-tutorial.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fzlu%2Ftropo-tutorial?ref=badge_shield)
+
 class MessagingsController < ApplicationController
   def index
     #initial_text captures the very first sms or IM sent to tropo
@@ -116,3 +118,7 @@ The :on works for the join event where I can hear "Welcome to my conference", bu
 I haven't gotten the leave event working and couldn't hear "Someone has left the conference".
 Also the second caller joining the conference hears the word "conference" in the welcome message being echoed several times.  The conference call itself works well, pretty clear voice quality when I tested with a coworker.
 
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fzlu%2Ftropo-tutorial.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fzlu%2Ftropo-tutorial?ref=badge_large)
